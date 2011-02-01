@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block title %}: {{ job.position }} at {{ job.organization }}{% endblock %}
+{% block content %}
+    <div class="container">
+<div class="column span-16"> 
+
+    <div id="back_to"><a href="{% url job_list %}">Back to Transparency Job listings</a></div>
+    {% if job.is_expired %}
+        <p>Sorry, this posting has expired.</p>
+    {% else %}
+        <div id="job">
+
+	    <div id="job_meta">
+	    <h2 class="position">{{ job.position }} <span class="position_type">({{ job.get_position_type_display }})</span></h2>
+            {% if job.is_filled %}
+                <p>Sorry, this position has been filled.</p>
+            {% else %}
+                
+                <span class="organization">
+                    {% if job.organization_url %}
+                        <a href="{{ job.organization_url }}">{{ job.organization }}</a>
+                    {% else %}
+                        {{ job.organization }}
+                    {% endif %}
+                </span>
+                <span class="location">| {{ job.location }}</span>
+             </div>
+                
+                <div id="job_detail">
+                <span class="date_published">{{ job.date_published|date:"F j, Y"}} &mdash;</span>
+                    <span class="position_description">{{ job.position_description|textile }}   </span>
+
+             	</div>
+<div id="contact_preview">
+<span class="bold">Contact:</span> {{ job.contact_name }} | {{ job.contact_email }}
+{% if job.contact_phone %} | {{ job.contact_phone }} {% endif %}
+</div>                
+            {% endif %}
+        </div>
+    {% endif %}
+    
+</div>
+
+       
+<div class="column span-8 last">
+<div id="sidebar_box">
+<div id="sidebar_content">
+<h3>Transparency Jobs:</h3>
+<p>Featuring jobs from both the US Federal Government as well as Non-Government Organizations.</p>
+<span class="sidebar_nav"><a href="{% url job_add %}" class="post_job">Post a Job</a> | <a href="/" class="post_job">View All Jobs</a></span>
+<p><small>All Transparency Job listings are moderated by Sunlight Foundation.</small></p>
+</div>
+</div>
+<div id="sidebar_bottom">&nbsp;</div>
+
+{% if other_jobs %}
+<div id="sidebar_box_plain">
+<div id="sidebar_content">
+<h3>Recently Added Jobs:</h3>
+<ul id="recently_added">
+	{% for job in other_jobs %}
+		<li><a href="{% url job_detail job.pk %}">{{ job.position }}</a></li>
+	{% endfor %}
+</ul>
+</div>
+</div>
+<div id="sidebar_widgetbox_bottom">&nbsp;</div>
+{% endif %}
+
+
+
+
+
+
+
+
+
+</div>
+        
+</div>        
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load markup %}
+
+{% block content %}
+    <div class="container">
+<div class="column span-16">  
+  <div id="preview_options">
+<h2>You're Almost Done!</h2>
+<p>Review Your Transparency Jobs Listing before you submit.</p>
+    <form action="{% url job_add %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.as_hidden }}
+        {% endfor %}
+        <input type="submit" value="Edit Job Posting" name="edit">
+        <input type="submit" value="Submit" name="submit">
+    </form>
+   </div> 
+   
+<div id="preview">
+    <h2 class="position">{{ form.cleaned_data.position }} ({{ position_type }})</h2>
+
+  <span class="organization">
+ {% if form.cleaned_data.organization_url %}
+ <a href="{{ form.cleaned_data.organization_url }}"> {{ form.cleaned_data.organization }}</a>
+ {% else %}
+ {{ form.cleaned_data.organization }}
+ {% endif %}
+</span>
+
+<span class="location">| {{ form.cleaned_data.location }}</span>
+
+<div class="position_description">{{ form.cleaned_data.position_description|textile }}</div>
+<div id="contact_preview">
+<span class="bold">Contact:</span> {{ form.cleaned_data.contact_name }} | {{ form.cleaned_data.contact_email }} | {{ form.cleaned_data.contact_phone }}
+</div>
+
+</div>   
+
+
+
+   </div>
+   
+          
+<div class="column span-8 last">
+<div id="sidebar_box">
+<div id="sidebar_content">
+<h3>Preview Your Post</h3>
+      <p>Make sure everything looks good, because once you post, you can't edit. Posts will stay live for 30 days, or until the position is filled.</p>
+
+</div>
+</div>
+<div id="sidebar_bottom">&nbsp;</div>
+
+</div>
+        
+</div>    
+    
+{% endblock %}

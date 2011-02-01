@@ -1,0 +1,4 @@
+Django==1.2.4
+-e git://github.com/sunlightlabs/django-gatekeeper.git#egg=gatekeeper
+Markdown
+textile

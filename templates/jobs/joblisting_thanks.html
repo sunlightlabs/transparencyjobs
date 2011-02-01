@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+<div class="column span-16">  
+<div id="thanks">
+    <h2>Thank you for sharing your Transparency Job opportunity.</h2> 
+    <p>We will review your submission and email you when it has been posted. Please
+note that all postings are moderated by the Sunlight Foundation.</p>
+
+</div>    
+    
+</div>    
+    
+    
+    <div class="column span-8 last">
+<div id="sidebar_box">
+<div id="sidebar_content">
+<h3>Well Done!</h3>
+      <p>Your listing has been added to the queue.</p>
+<a href="/" class="post_job">View All Jobs</a> | <a href="{% url job_add %}" class="post_job">Post Another</a>
+
+</div>
+</div>
+<div id="sidebar_bottom">&nbsp;</div>
+
+</div>
+        
+</div>      
+{% endblock %}

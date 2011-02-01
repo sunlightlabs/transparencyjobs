@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Transparency Jobs{% block title %}{% endblock %}</title>
+<link rel="alternate" type="application/rss+xml" title="Sunlight Foundation Transparency Ecosystem" href="{% url job_feed "latest" %}">
+<link rel="stylesheet" href="http://media.sunlightprojects.org/transparencyjobs/css/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="http://media.sunlightprojects.org/transparencyjobs/css/print.css" type="text/css" media="print">   
+<link rel="stylesheet" type="text/css" href="http://media.sunlightprojects.org/transparencyjobs/css/reset-min.css"> 
+<!-[if IE]><link rel="stylesheet" href="http://media.sunlightprojects.org/transparencyjobs/css/ie.css" type="text/css" media="screen, projection"><![endif]>
+<link rel="stylesheet" type="text/css" href="http://media.sunlightprojects.org/transparencyjobs/css/tj.css"> 
+<style type="text/css" media="screen"></style>
+	<script src="http://services.sunlightlabs.com/brandingbar/hat_js/tj/" type="text/javascript"></script>
+</head>
+<body>
+<div id="top">
+	<div id="header_top">
+	<div id="link_block_box"><a href="/"><span class="link_block">&nbsp;</span></a></div>
+	<h1 class="tagline">Bringing Transparency to Government, One Job at a Time</h1>
+	</div>
+	</div>
+	
+	
+</div>
+
+<div class="container">
+{% block content %}{% endblock %}
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1265484-27");
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+Yay! Your job was approved. Here's the link: {% url job_detail job.pk %}
+
+-Transparency Jobs
+http://transparencyjobs.com

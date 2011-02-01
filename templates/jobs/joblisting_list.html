@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="column span-16">   
+        
+        <h2 class="recent">Recent Transparency Job Postings <a href="/jobs/feeds/latest/"><img src="http://media.sunlightprojects.org/transparencyjobs/images/tj_rss.png" border="0"></a></h2>
+
+        {% if job_list %}
+            <ul class="job_list hfeed">
+                {% for job in job_list %}
+                    <li class="{% cycle '' 'alt' %} hentry">
+                        <a href="{% url job_detail job.pk %}" rel="bookmark">
+                            <span class="job_position entry-title">{{ job.position }}</span>
+                            <span class="job_location">{{ job.location }}</span>
+                            <span class="job_organization">{{ job.get_position_type_display }} @ {{ job.organization }}</span>
+                            <span class="job_date_published">
+                                <abbr title="{{ job.date_published|date:"Y-m-d\TH:i:s" }}" class="published">posted {{ job.date_published|date:"F j, Y" }}</abbr>
+                            </span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No career opportunities have been submitted at this time.</p>
+        {% endif %}
+
+        {% if is_paginated %}
+            <p id="pagination">
+            {% if page_obj.has_next %}
+                <a href="{% url job_list %}?page={{ page_obj.next_page_number }}" class="next">Next</a>
+            {% endif %}
+            {% if page_obj.has_previous %}
+                <a href="{% url job_list %}?page={{ page_obj.previous_page_number }}" class="previous">Previous</a>
+            {% endif %}
+            </p>
+        {% endif %}
+    
+
+    </div>  
+   
+    <div class="column span-8 last">
+        <div id="sidebar_box">
+            <div id="sidebar_content">
+                <h3>Welcome to Transparency Jobs</h3>
+                <p>With the recent move toward increased government transparency, the opportunities in this sector have grown enough to warrant a specialized site for the aggregation of "transparency" related careers.</p>
+                <p>The Sunlight Foundation is happy to present Transparency Jobs, featuring jobs from both the US Federal Government as well as Non-Government Organizations.</p>
+                <span class="center"><a href="{% url job_add %}" class="post_job">Post a Transparency Job</a> </span>
+</div>
+        </div>
+        <div id="sidebar_bottom">&nbsp;</div>
+    
+		 <div id="sidebar_widgetbox">
+	     <div id="sidebar_content">
+		<h3 class="spread">Help Spread Transparency</h3>
+		<p>Sunlight Foundation has created a simple widget that displays Jobs listings recently posted to TransparencyJobs.com.  To add it to your site, copy the embed code below.</p>
+		<form action="" class="embed">
+		<input type="text" size="30" value="&lt;script type=&quot;text/javascript&quot; src=&quot;http://embed.sunlightmediaservices.com/widget/552877867/&quot;&gt;&lt;/script&gt;" />
+		</form>
+		</div>
+	        </div>
+	        <div id="sidebar_widgetbox_bottom">&nbsp;</div>
+
+
+</div>
+
+        
+</div>      
+{% endblock %}

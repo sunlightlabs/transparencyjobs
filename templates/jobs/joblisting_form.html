@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="column span-16">
+            <div id="form"> 
+                <form action="{% url job_preview %}" method="post">
+                    <fieldset>
+                        <legend>Post a Transparency Job Listing</legend>
+                        {% csrf_token %}
+                        <input type="hidden" name="zipcode" value="">
+                        <ul>
+                            {{ form.as_ul }}
+                            <li><input type="submit" value="Preview Your Job Listing" name="preview"></li>
+                        </ul>
+                    </fieldset>
+                </form>
+            </div>    
+        </div>
+        <div class="column span-8 last">
+            <div id="sidebar_box">
+                <div id="sidebar_content">
+                    <h3>Tips for Posting a Job</h3>
+                    <ul>
+                        <li>Remember to be descriptive.</li>
+                        <li>List Responsibilities.</li>
+                        <li>Include a description of your organization to put the job in context.</li>
+                        <li>Include contact information and/or application instructions.</li>
+                        <li>Some use of basic HTML is ok.</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="sidebar_bottom">&nbsp;</div>
+        </div>
+    </div>
+{% endblock %}
