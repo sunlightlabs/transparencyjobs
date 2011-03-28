@@ -19,15 +19,16 @@ def joblisting_detail(request, object_id):
         return HttpResponse("couldn't find job")
         
 def joblisting_add(request):
-    if request.method == 'POST':
-        form = JobListingForm(request.POST)
-        if form.is_valid():
-            if "submit" in request.POST:
-                form.save()
-                return HttpResponseRedirect(reverse('job_thanks'))
-    else:
-        form = JobListingForm()
-    return render_to_response("jobs/joblisting_form.html", {"form": form}, context_instance=RequestContext(request))
+    return HttpResponseRedirect('/')
+    # if request.method == 'POST':
+    #     form = JobListingForm(request.POST)
+    #     if form.is_valid():
+    #         if "submit" in request.POST:
+    #             form.save()
+    #             return HttpResponseRedirect(reverse('job_thanks'))
+    # else:
+    #     form = JobListingForm()
+    # return render_to_response("jobs/joblisting_form.html", {"form": form}, context_instance=RequestContext(request))
 
 def joblisting_preview(request):
     if request.method == 'POST':
