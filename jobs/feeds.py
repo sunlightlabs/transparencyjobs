@@ -1,5 +1,6 @@
 from django.contrib.syndication.feeds import Feed
 from transparencyjobs.jobs.models import JobListing
+import gatekeeper
 
 class LatestJobs(Feed):
     
@@ -11,7 +12,7 @@ class LatestJobs(Feed):
         return '120' # two hour ttl
 
     def items(self):
-        return JobListing.objects.open().approved()
+        return gatekeeper.approved(JobListing.objects.open())
 
     def item_author_name(self, job_listing):
         return job_listing.contact_name

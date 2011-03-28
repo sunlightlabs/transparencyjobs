@@ -5,14 +5,15 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.views.generic.list_detail import object_list, object_detail
 from transparencyjobs.jobs.models import JobListing, JobListingForm, POSITION_TYPE_CHOICES
+import gatekeeper
 
 def joblisting_list(request, page=1):
-    jobs = JobListing.objects.open().approved()
+    jobs = gatekeeper.approved(JobListing.objects.open())
     return object_list(request, queryset=jobs, paginate_by=10, template_object_name="job")
 
 def joblisting_detail(request, object_id):
-    jobs = JobListing.objects.filter(pk=object_id).approved()
-    other_jobs = JobListing.objects.open().exclude(pk=object_id).order_by("?").approved()[:5]
+    jobs = gatekeeper.approved(JobListing.objects.filter(pk=object_id))
+    other_jobs = gatekeeper.approved(JobListing.objects.open().exclude(pk=object_id).order_by("?"))[:5]
     try:
         return object_detail(request, queryset=jobs, object_id=object_id, template_object_name="job", extra_context={"other_jobs":other_jobs})
     except Http404:
